@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom m-2">
+        <h1 class="h2">Dashboard</h1>
+        <div>
+          <button type="button" class="btn btn-rbp rounded-0 me-2"  >New Brand</button>
+      <button type="button" class="btn btn-rbp rounded-0 " >Restore Brand</button>
+    </div>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Brand or Planning Cycle" aria-label="Search">
+        </form>
+    </div>
+  </div>
+
+  <div class="card m-3 brand-sig" *ngFor="let brand of brandList; let i =index;" >
+    <!--<div class="row">
+    <div class="col-md-1">
+      <div class="mh-100 bg-primary "></div>
+    </div>-->
+    <!--<div class="col-md-11">-->
+          <div class="card-body">
+              <div class="row">
+                  <div class="col"><h5 class="card-title">{{ brand?.name }}</h5></div>
+                  <div class="col">{{ brand?.description }}</div>
+                  <div class="col">
+                        <div *ngFor="let pc of brand?.planCycle" class="text-rbp border-bottom mb-3">{{ pc?.name }}</div>
+                  </div>
+                  <div class="col">
+                        <a href="#" class="card-link text-rbp fs-5 text-decoration-none">Add Planning Cycle</a>
+                  </div>
+              </div>
+      <!-- </div>-->
+         </div>
+    
+ </div>
+
+  <!--<ul class="list-group list-group-flush">
+      <li class="list-group-item  d-flex justify-content-between flex-wrap flex-md-nowrap">
+             <div>Brand Item</div>
+             <div>Desc about your brand</div>
+             <div>
+                <div>Planning Cycle 2020</div>
+                <div>Planning Cycle 2020</div>
+                <div>Planning Cycle 2020</div>
+             </div>
+             <div>Add Planning Cycle</div>
+      </li>
+     <li class="list-group-item  d-flex justify-content-between flex-wrap flex-md-nowrap">
+             <div>Pine Brand</div>
+             <div>Desc about your brand</div>
+             <div>
+                <div>Planning Cycle </div>
+               
+             </div>
+             <div>Add Planning Cycle</div>
+      </li>
+    </ul>-->

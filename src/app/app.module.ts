@@ -11,6 +11,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { BrandComponent } from './brand/brand.component';
 import { CreateBrandDialogComponent } from './brand/create-brand-dialog/create-brand-dialog.component';
+import { BrandListComponent } from './brand/brand-list/brand-list.component';
 
 
 
@@ -19,7 +20,8 @@ import { CreateBrandDialogComponent } from './brand/create-brand-dialog/create-b
     AppComponent,
     HeaderComponent,
     BrandComponent,
-    CreateBrandDialogComponent
+    CreateBrandDialogComponent,
+    BrandListComponent
   ],
   imports: [
     BrowserModule,

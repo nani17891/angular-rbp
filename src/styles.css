@@ -10,4 +10,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #27A6A4;
     border-color: #27A6A4;
 }
+.text-rbp {
+	color: #27A6A4;
+}
+.brand-sig{
+	border-left:25px solid #D6EBFF;
+}
 
+.mat-tab-label-active {
+	color: #27A6A4;
+	 
+}
+.mat-tab-label, .mat-tab-link{
+	font-size:14px;
+	font-weight: 700;
+}

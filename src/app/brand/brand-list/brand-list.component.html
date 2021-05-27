@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom m-2">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="brand-pageHeading">Brand Manager</h1>
         <div>
           <button type="button" class="btn btn-rbp rounded-0 me-2"  >New Brand</button>
       <button type="button" class="btn btn-rbp rounded-0 " >Restore Brand</button>
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="card m-3 brand-sig" *ngFor="let brand of brandList; let i =index;" >
+  <div class="card m-3 brand-lb" *ngFor="let brand of brandList; let i =index;" >
     <!--<div class="row">
     <div class="col-md-1">
       <div class="mh-100 bg-primary "></div>
@@ -19,13 +19,13 @@
     <!--<div class="col-md-11">-->
           <div class="card-body">
               <div class="row">
-                  <div class="col"><h5 class="card-title">{{ brand?.name }}</h5></div>
-                  <div class="col">{{ brand?.description }}</div>
+                  <div class="col"><h5 class="brand-title">{{ brand?.name }}</h5></div>
+                  <div class="col brand-description">{{ brand?.description }}</div>
                   <div class="col">
-                        <div *ngFor="let pc of brand?.planCycle" class="text-rbp border-bottom mb-3">{{ pc?.name }}</div>
+                     <div *ngFor="let pc of brand?.planCycle" class="text-rbp border-bottom brand-pc">{{ pc?.name }}</div>
                   </div>
                   <div class="col">
-                        <a href="#" class="card-link text-rbp fs-5 text-decoration-none">Add Planning Cycle</a>
+                        <a href="#" class="text-rbp brand-add-pc-link text-decoration-none">Add Planning Cycle</a>
                   </div>
               </div>
       <!-- </div>-->

@@ -4,14 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { BrandComponent } from './brand/brand.component';
 import { CreateBrandDialogComponent } from './brand/create-brand-dialog/create-brand-dialog.component';
 import { BrandListComponent } from './brand/brand-list/brand-list.component';
+import { SearchFilterPipe } from './common/pipe/search-filter.pipe';
 
 
 
@@ -21,7 +24,8 @@ import { BrandListComponent } from './brand/brand-list/brand-list.component';
     HeaderComponent,
     BrandComponent,
     CreateBrandDialogComponent,
-    BrandListComponent
+    BrandListComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,9 @@ import { BrandListComponent } from './brand/brand-list/brand-list.component';
     NoopAnimationsModule,
     MatTabsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent],

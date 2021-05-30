@@ -1,9 +1,32 @@
 <h2 mat-dialog-title>Create New Brand</h2>
+<button type="button" class="btn-close" (click)="close()"aria-label="Close"></button>
 <mat-dialog-content>
+	<form [formGroup]="brandForm" (ngSubmit)="save()" novalidate>
+	 
+		<div class="mb-3">
+		  <label for="name" class="form-label">Brand Name</label>
+		  <input type="text" class="form-control" id="name" formControlName="name" required>
+		</div>
+		<div class="mb-3">
+		  <label for="description" class="form-label">Brand Description</label>
+		  <textarea class="form-control" id="description" rows="3"></textarea>
+		</div>
 
+		<div class="mb-3">
+		  <label for="peopleList" class="form-label">Invite people to collaborate</label>
+		  <input type="text" class="form-control" id="peopleList" [formControl]="control" [matAutocomplete]="auto">
+			  <mat-autocomplete #auto="matAutocomplete">
+			    <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+			      {{street}}
+			    </mat-option>
+			  </mat-autocomplete>
+		</div>
+
+	</form>
+	
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-stroked-button mat-dialog-close>Cancel</button>
-  <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>Save & Exit</button>
+  <button mat-stroked-button mat-dialog-close (click)="close()">Cancel</button>
+  <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save & Exit</button>
    <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>Save & Create Planing Cycle</button>
 </mat-dialog-actions>

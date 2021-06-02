@@ -1,5 +1,6 @@
+<button type="button" class="btn-close pull-right" (click)="close()" aria-label="Close"></button>
 <h2 mat-dialog-title>Create New Brand</h2>
-<button type="button" class="btn-close" (click)="close()"aria-label="Close"></button>
+
 <mat-dialog-content>
 	<form [formGroup]="brandForm" (ngSubmit)="save()" novalidate>
 	 
@@ -9,7 +10,7 @@
 		</div>
 		<div class="mb-3">
 		  <label for="description" class="form-label">Brand Description</label>
-		  <textarea class="form-control" id="description" rows="3"></textarea>
+		  <textarea class="form-control" id="description" rows="3"formControlName="description" required></textarea>
 		</div>
 
 		<div class="mb-3">

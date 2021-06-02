@@ -1,0 +1,21 @@
+
+<h2 mat-dialog-title>edit Brand</h2>
+
+<mat-dialog-content>
+	<form [formGroup]="brandEditForm" (ngSubmit)="update()" novalidate>
+	 
+		<div class="mb-3">
+		  <label for="name" class="form-label">Brand Name</label>
+		  <input type="text" class="form-control" id="name" formControlName="name" required>
+		</div>
+		<div class="mb-3">
+		  <label for="description" class="form-label">Brand Description</label>
+		  <textarea class="form-control" id="description" rows="3"formControlName="description" required></textarea>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions >
+  <button mat-stroked-button mat-dialog-close>Delete Brand</button>
+  <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial (click)="close()">cancel</button>
+<button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial (click)="update()">Save</button>
+</mat-dialog-actions>

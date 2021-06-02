@@ -20,6 +20,9 @@ body { margin: 0; font-family: Open Sans,Roboto, "Helvetica Neue", sans-serif; }
 	font-size: 32px;
 	letter-spacing: 0.15px;
 }
+.pull-right{
+  float:right;
+}
 /* tabs */
 .mat-tab-label-active {
 	color: #27A6A4 !important;

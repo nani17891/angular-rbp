@@ -45,8 +45,9 @@ export class CreateBrandDialogComponent implements OnInit {
 
   initForm(){
   	this.brandForm = this.formBuilder.group({
+      id: [''],
       name: ['', [Validators.required, Validators.minLength(10)]],
-      description: ['', [ Validators.maxLength(50)]],
+      description: ['', [ Validators.required,Validators.maxLength(50)]],
       CreatedDate: [''],
       CreatedBy:['']
      });

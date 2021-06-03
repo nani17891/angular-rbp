@@ -5,7 +5,9 @@ import {EditBrandDialogComponent} from '../edit-brand-dialog/edit-brand-dialog.c
 import {ManageBrandDialogComponent} from '../manage-brand-dialog/manage-brand-dialog.component';
 import {DeleteBrandDialogComponent} from '../delete-brand-dialog/delete-brand-dialog.component';
 import {  FormControl } from '@angular/forms';
-
+import { BrandService } from '../brand.service';
+import { Observable } from 'rxjs';
+ 
 @Component({
   selector: 'app-brand-list',
   templateUrl:'./brand-list.component.html',
@@ -14,10 +16,15 @@ import {  FormControl } from '@angular/forms';
 export class BrandListComponent implements OnInit {
   public brandList :any = [];
   searchText = new FormControl();
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              public brandService: BrandService) { }
 
   ngOnInit(): void {
-  	this.brandList = [
+    this.brandService.getBrands().subscribe((response) => {
+      this.brandList = response;
+    })    
+
+  	/*this.brandList = [
   	{
       id: 1,
   		name: "Brand Cam",
@@ -50,7 +57,7 @@ export class BrandListComponent implements OnInit {
   	},
 
 
-  	];
+  	];*/
   }
 
   generateTooltip(currentBrandObj) {
@@ -78,7 +85,9 @@ export class BrandListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if(result) {
-        this.brandList.push(result);
+        this.brandService.createBrand(result).subscribe((response) => {
+          this.brandList.push(result);
+        })    
       }
       
     });

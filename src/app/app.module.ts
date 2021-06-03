@@ -10,6 +10,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -44,6 +45,7 @@ import { DeleteBrandDialogComponent } from './brand/delete-brand-dialog/delete-b
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatAutocompleteModule,
     MatMenuModule,
     MatTooltipModule,

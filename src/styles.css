@@ -4,7 +4,88 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Open Sans,Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    background: #f2edf3;
+}
+
+.container-scroller {
+    overflow: hidden;
+}
+.page-body-wrapper {
+    min-height: calc(100vh - 70px);
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    padding-right: 0;
+}
+.sidebar {
+    min-height: calc(100vh - 70px);
+    background: #fff;
+    font-family: ubuntu-regular,sans-serif;
+    padding: 0;
+    width: 260px;
+    z-index: 11;
+    transition: width .25s ease,background .25s ease;
+    -webkit-transition: width .25s ease,background .25s ease;
+    -moz-transition: width .25s ease,background .25s ease;
+    -ms-transition: width .25s ease,background .25s ease;
+    height: 100%;
+}
+.main-panel {
+    transition: width .25s ease,margin .25s ease;
+    width: calc(100% - 10px);
+    min-height: calc(100vh - 10px);
+    display: flex;
+    flex-direction: column;
+}
+.content-wrapper {
+    background: #f2edf3;
+    padding:1rem 1rem;
+    width: 100%;
+    flex-grow: 1;
+}
+.footer {
+    background: #f2edf3;
+    padding: 20px 1rem;
+    transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -webkit-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    border-top: 1px solid #ebedf2;
+    font-size: calc(.875rem - .05rem);
+    font-family: ubuntu-regular,sans-serif;
+}
+.sidebar .nav:not(.sub-menu) {
+    padding-bottom: 60px;
+}
+@media (min-width: 992px){
+	.sidebar-icon-only .sidebar, .sidebar-icon-only .sidebar {
+	    width: 70px;
+	}
+	.sidebar-icon-only .sidebar .nav, .sidebar-icon-only  .sidebar .nav] {
+	    overflow: visible;
+	    margin-left: 0;
+	    margin-right: 0;
+	}
+
+	.sidebar-icon-only .sidebar .nav .nav-item, .sidebar-icon-only  .sidebar .nav .nav-item {
+	    padding: 0 1rem;
+	    position: relative;
+	}
  
+}
+.navbar-brand {
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 0.5rem;
+    margin-left: 1rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+  
 /* common css */
 .btn-rbp {
     color: #fff;

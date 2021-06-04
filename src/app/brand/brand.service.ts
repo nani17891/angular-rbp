@@ -13,6 +13,6 @@ export class BrandService {
   }
 
   createBrand(brandObj){
-  	return this.restApi.post("/createBrand",brandObj);
+  	return this.restApi.post("/brand",brandObj);
   }
 }

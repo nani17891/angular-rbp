@@ -15,4 +15,8 @@ export class BrandService {
   createBrand(brandObj){
   	return this.restApi.post("/brand",brandObj);
   }
+
+  updateBrand(brandObj){
+  	return this.restApi.post("/brand",brandObj);
+  }
 }

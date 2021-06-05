@@ -9,7 +9,7 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class RestApiService {
 
-  baseUrl = 'http://192.168.0.104:5000';
+  baseUrl = 'https://rbjne6jh2c.execute-api.us-east-1.amazonaws.com/dev';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -29,6 +29,22 @@ export class RestApiService {
 
   post(endPoint,data) {
     return this.httpClient.post(this.baseUrl + endPoint, data, this.httpHeader)
+    .pipe(
+      retry(1),
+      catchError(this.httpError)
+    )
+  }
+
+  put(endPoint,data) {
+    return this.httpClient.put(this.baseUrl + endPoint, data, this.httpHeader)
+    .pipe(
+      retry(1),
+      catchError(this.httpError)
+    )
+  }
+
+  delete(endPoint,data) {
+    return this.httpClient.delete(this.baseUrl + endPoint)
     .pipe(
       retry(1),
       catchError(this.httpError)

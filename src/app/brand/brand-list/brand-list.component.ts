@@ -22,6 +22,7 @@ export class BrandListComponent implements OnInit {
   ngOnInit(): void {
     this.brandService.getBrands().subscribe((response) => {
       this.brandList = response;
+       
     })    
 
   	/*this.brandList = [
@@ -107,10 +108,13 @@ export class BrandListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      var index = this.brandList.findIndex(item => item.id === result.id)
-      this.brandList.splice(index, 1, result)
+       this.brandService.updateBrand(result).subscribe((response) => {
+          var index = this.brandList.findIndex(item => item.id === result.id)
+          this.brandList.splice(index, 1, result)
+        })   
     });
-}
+  }
+
 	manageBrandDialog(){
 		const dialogConfig = new MatDialogConfig();
 	

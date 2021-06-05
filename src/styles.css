@@ -85,7 +85,60 @@ body {
     text-decoration: none;
     white-space: nowrap;
 }
-  
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background: rgba(196, 196, 196, 0.3);
+}
+.nav-link-name{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 150%;
+    /* or 18px */
+
+    text-align: center;
+    letter-spacing: -0.2px;
+
+    /* Neutral/white */
+
+    color: #FFFFFF;
+}
+
+.header-app-name {
+        display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 16px;
+
+    position: static;
+    width: 263px;
+    height: 40px;
+    left: 0px;
+    top: calc(50% - 40px/2);
+
+    /* Opacity/zsteal-60_0.10 */
+
+    background: rgba(39, 166, 164, 0.1);
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    
+}
+
+.footer-copy-text{
+     
+    font-size: 12px;
+   
+    color: #87848D;
+}
+
+.footer-text {
+    color:#1A1628;
+}
+
 /* common css */
 .btn-rbp {
     color: #fff;
@@ -104,6 +157,18 @@ body {
 .pull-right{
   float:right;
 }
+.btn i{
+    font-size:14px;
+}
+.header-support-text{
+    color:#5B5864;
+    font-size:14px;
+}
+.info-icon{
+    color:#716E79;
+    font-size:14px;
+}
+
 /* tabs */
 .mat-tab-label-active {
 	color: #27A6A4 !important;

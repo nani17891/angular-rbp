@@ -24,7 +24,7 @@
              <div class="col">
               <h5 class="brand-title">{{ brand?.name }}
                   <span class="me-2">
-                      <i class="uiw-font-plus info-icon" (click)="tooltip.toggle()" matTooltip={{generateTooltip(brand)}}></i>   
+                      <i class="uiw-font-zs-icon-info" (click)="tooltip.toggle()" matTooltip={{generateTooltip(brand)}}></i>   
                   </span>
                  
                   <span class="dropdown ">   
@@ -43,7 +43,7 @@
                 <div *ngFor="let pc of brand?.planCycle" class="text-rbp border-bottom brand-pc">{{ pc?.name }}</div>
              </div>
              <div class="col">
-                   <a href="#" class="text-rbp brand-add-pc-link text-decoration-none ms-auto"> <i class="uiw-font-plus-circle"></i> Add Planning Cycle</a>
+                   <a href="#" class="text-rbp brand-add-pc-link text-decoration-none ms-auto" (click)="openNewPlanningCycleDialog(brand)"> <i class="uiw-font-plus-circle"></i> Add Planning Cycle</a>
              </div>
          </div>
  <!-- </div>-->

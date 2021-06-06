@@ -24,6 +24,7 @@
              <div class="col">
               <h5 class="brand-title">{{ brand?.name }}
                   <span class="me-2">
+ 
                       <i class="uiw-font-zs-icon-info" [ngbPopover]="popContent" [popoverTitle]="popTitle"
                       triggers="mouseenter:mouseleave" placement="right"></i>   
                             <ng-template #popContent>
@@ -31,6 +32,7 @@
                                 Last Updated by :{{ brand?.CreatedBy }} @ {{  brand?.CreatedDate }}
                             </ng-template>
                             <ng-template #popTitle>Brand Information</ng-template>
+ 
                   </span>
                  
                   <span class="dropdown ">   
@@ -48,8 +50,10 @@
                 <div *ngIf="!brand?.planCycle">So empty! Start by adding a planning cycle</div>
                 <div *ngFor="let pc of brand?.planCycle" class="text-rbp border-bottom brand-pc">{{ pc?.name }}</div>
              </div>
+ 
              <div class="col text-end">
                    <a href="#" class="text-rbp brand-add-pc-link text-decoration-none ms-auto" (click)="openNewPlanningCycleDialog(brand)"> <i class="uiw-font-plus-circle me-1"></i> Add Planning Cycle</a>
+ 
              </div>
          </div>
  <!-- </div>-->

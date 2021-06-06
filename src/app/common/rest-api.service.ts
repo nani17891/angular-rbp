@@ -43,6 +43,14 @@ export class RestApiService {
     )
   }
 
+  patch(endPoint,data) {
+    return this.httpClient.patch(this.baseUrl + endPoint, data, this.httpHeader)
+    .pipe(
+      retry(1),
+      catchError(this.httpError)
+    )
+  }
+
   delete(endPoint,data) {
     return this.httpClient.delete(this.baseUrl + endPoint)
     .pipe(

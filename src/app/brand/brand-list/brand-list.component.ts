@@ -22,7 +22,7 @@ export class BrandListComponent implements OnInit {
   ngOnInit(): void {
     this.brandService.getBrands().subscribe((response) => {
       this.brandList = response;
-       
+
     })    
 
   	/*this.brandList = [
@@ -75,10 +75,7 @@ export class BrandListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "500px";
     dialogConfig.height = "600px";
-    dialogConfig.data = {
-        id: 1,
-        title: 'Angular For Beginners'
-    };
+     
 
     const dialogRef =  this.dialog.open(CreateBrandDialogComponent, dialogConfig);
    
@@ -101,19 +98,20 @@ export class BrandListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "500px";
     dialogConfig.height = "400px";
-    dialogConfig.data = brandObject;
+    
+    this.brandService.getBrand(brandObject.id).subscribe((response) => {
+          dialogConfig.data = response[0];
+          const dialogRef =  this.dialog.open(EditBrandDialogComponent, dialogConfig);
 
-    const dialogRef =  this.dialog.open(EditBrandDialogComponent, dialogConfig);
-   
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-       this.brandService.updateBrand(result).subscribe((response) => {
-          var index = this.brandList.findIndex(item => item.id === result.id)
-          this.brandList.splice(index, 1, result)
-        })   
-    });
-  }
+          dialogRef.afterClosed().subscribe(result => {
+              console.log(`Dialog result: ${result}`);
+               this.brandService.updateBrand(result).subscribe((response) => {
+                  var index = this.brandList.findIndex(item => item.id === result.id)
+                  this.brandList.splice(index, 1, result)
+                })   
+            });
+          });
+ }
 
 	manageBrandDialog(){
 		const dialogConfig = new MatDialogConfig();

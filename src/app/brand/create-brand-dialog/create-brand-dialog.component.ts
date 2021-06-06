@@ -21,8 +21,7 @@ export class CreateBrandDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<CreateBrandDialogComponent>,
   			 @Inject(MAT_DIALOG_DATA) data,
   			 private formBuilder: FormBuilder) {
-
-  			 this.description = data.title;
+ 
   			 this.initForm();
 
   }

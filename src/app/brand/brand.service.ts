@@ -16,7 +16,11 @@ export class BrandService {
   	return this.restApi.post("/brand",brandObj);
   }
 
+  getBrand(id){
+  	return this.restApi.get("/brand/"+id);
+  }
+
   updateBrand(brandObj){
-  	return this.restApi.post("/brand",brandObj);
+  	return this.restApi.patch("/brand/"+brandObj.id,brandObj);
   }
 }

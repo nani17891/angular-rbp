@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Create New Planning Cycle</h2>
+<button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
+<mat-dialog-content>
+	<form [formGroup]="planningCycleForm" (ngSubmit)="save()" novalidate>
+
+		<div class="mb-3">
+			<label for="name" class="form-label">Cycle Name</label>
+			<input type="text" class="form-control" id="name" formControlName="name" required>
+		</div>
+		<div class="mb-3 row">
+			<div class="col-4">
+				<label for="name" class="form-label">Currency</label>
+				<select class="form-control" id="currency" formControlName="currency" required>
+					<option disabled selected hidden>Select Currency</option>
+					<option>Dollar</option>
+					<option>GBP</option>
+					<option>Euro</option>
+				</select>
+			</div>
+			<div class="col-3">
+				<label for="name" class="form-label">Profit Margin</label>
+				<input type="text" class="form-control" id="profitMargin" formControlName="profitMargin" required>
+			</div>
+		</div>
+		<div class="mb-3 row">
+			<div class="col-3">
+				<label for="name" class="form-label">Forecast</label>
+				<input type="text" class="form-control" id="forecast" formControlName="forecast" required>
+			</div>
+			<div class="col-3">
+				<label for="name" class="form-label">Price Per unit</label>
+				<input type="text" class="form-control" id="pricePerUnit" formControlName="pricePerUnit" required>
+			</div>
+			<div class="col-3">
+				<label for="name" class="form-label">Base Sales</label>
+				<input type="text" class="form-control" id="baseSales" formControlName="baseSales" required>
+			</div>
+		</div>
+		<div class="mb-3">
+			<label for="description" class="form-label">Planning Cycle Description</label>
+			<textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+		</div>
+
+	</form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-stroked-button mat-dialog-close (click)="close()">Cancel</button>
+	<button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Submit</button>
+</mat-dialog-actions>

@@ -134,26 +134,28 @@ export class BrandListComponent implements OnInit {
 		
 		});
 	}
-		deleteBrandDialog(){
-			const dialogConfig = new MatDialogConfig();
-		
-			dialogConfig.disableClose = false;
-			dialogConfig.autoFocus = true;
-			dialogConfig.width = "500px";
-			dialogConfig.height = "300px";
-			dialogConfig.data = {
-				id: 1,
-				title: 'Angular For Beginners'
-			};
-		
-			const dialogRef =  this.dialog.open(DeleteBrandDialogComponent, dialogConfig);
-		   
-		
-			dialogRef.afterClosed().subscribe(result => {
-			  console.log(`Dialog result: ${result}`);
-			  
-			});
-		}
+  
+	deleteBrandDialog(){
+		const dialogConfig = new MatDialogConfig();
+	
+		dialogConfig.disableClose = false;
+		dialogConfig.autoFocus = true;
+		dialogConfig.width = "500px";
+		dialogConfig.height = "300px";
+		dialogConfig.data = {
+			id: 1,
+			title: 'Angular For Beginners'
+		};
+	
+		const dialogRef =  this.dialog.open(DeleteBrandDialogComponent, dialogConfig);
+	   
+	
+		dialogRef.afterClosed().subscribe(result => {
+		  console.log(`Dialog result: ${result}`);
+		  
+		});
+	}
+
 openNewPlanningCycleDialog(brand) {
   const dialogConfig = new MatDialogConfig();
     dialogConfig.width = "600px";

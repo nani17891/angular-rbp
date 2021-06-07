@@ -97,7 +97,9 @@ export class BrandListComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "500px";
-    dialogConfig.height = "500px";
+
+    dialogConfig.height = "400px";
+ 
     
     this.brandService.getBrand(brandObject.id).subscribe((response) => {
           dialogConfig.data = response[0];
@@ -106,7 +108,9 @@ export class BrandListComponent implements OnInit {
  
           dialogRef.afterClosed().subscribe(result => {
               console.log(`Dialog result: ${result}`);
+ 
                this.brandService.updateBrand(result).subscribe((_response) => {
+ 
                   var index = this.brandList.findIndex(item => item.id === result.id)
                   this.brandList.splice(index, 1, result)
                 })   
@@ -135,13 +139,17 @@ export class BrandListComponent implements OnInit {
 		});
 	}
   
+ 
 	deleteBrandDialog(_brandObj){
+ 
 		const dialogConfig = new MatDialogConfig();
 	
 		dialogConfig.disableClose = false;
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "500px";
+ 
 		dialogConfig.height = "400px";
+ 
 		dialogConfig.data = {
 			id: 1,
 			title: 'Angular For Beginners'
@@ -152,10 +160,12 @@ export class BrandListComponent implements OnInit {
 	
 		dialogRef.afterClosed().subscribe(result => {
 		  console.log(`Dialog result: ${result}`);
+ 
       this.brandService.deleteBrand(_brandObj).subscribe((_response) => {
         var index = this.brandList.findIndex(item => item.id === result.id)
         this.brandList.slice(index, 1, result)
       })
+ 
 		  
 		});
 	}

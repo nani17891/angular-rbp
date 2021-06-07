@@ -6,22 +6,23 @@ import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-create-brand-dialog',
-  templateUrl: './create-brand-dialog.component.html',
-  styleUrls: ['./create-brand-dialog.component.css']
+  selector: 'app-planning-cycle-brand-dialog',
+  templateUrl: './create-planning-cycle-dialog.component.html',
+  styleUrls: ['./create-planning-cycle-dialog.component.css']
 })
-export class CreateBrandDialogComponent implements OnInit {
+export class CreatePlanningCycleDialogComponent implements OnInit {
 	
   description: string;
-  brandForm: FormGroup;
+  planningCycleForm: FormGroup;
   control = new FormControl();
   streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
   filteredStreets: Observable<string[]>;
 
-  constructor(public dialogRef: MatDialogRef<CreateBrandDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<CreatePlanningCycleDialogComponent>,
   			 @Inject(MAT_DIALOG_DATA) data,
   			 private formBuilder: FormBuilder) {
- 
+
+  			 this.description = data.title;
   			 this.initForm();
 
   }
@@ -43,17 +44,14 @@ export class CreateBrandDialogComponent implements OnInit {
   }
 
   initForm(){
-  	this.brandForm = this.formBuilder.group({
-      id: [''],
+  	this.planningCycleForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(10)]],
-      description: ['', [ Validators.required,Validators.maxLength(50)]],
-      CreatedDate: [''],
-      CreatedBy:['']
+      description: ['', [ Validators.required,Validators.maxLength(50)]]
      });
   }
 
   save() {
-    this.dialogRef.close(this.brandForm.value);
+    this.dialogRef.close(this.planningCycleForm.value);
   }
 
   close() {

@@ -89,6 +89,9 @@ body {
     color: #fff;
     background: rgba(196, 196, 196, 0.3);
 }
+.nav-pills .nav-link{
+    color:#fff;
+}
 .nav-link-name{
     font-style: normal;
     font-weight: bold;
@@ -138,12 +141,31 @@ body {
 .footer-text {
     color:#1A1628;
 }
-
+.popover-header{
+    background-color: #fff;
+}
+.fixed-side-nav{
+    position: fixed;
+    z-index: 100;
+    height: 700px;
+}
+.main-panel {
+    transition: width .25s ease,margin .25s ease;
+    width: calc(100% - 10px);
+    min-height: 700px;
+    height: 700px;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+}
 /* common css */
 .btn-rbp {
     color: #fff;
     background-color: #27A6A4;
     border-color: #27A6A4;
+}
+.text-rbp:hover{
+    color: #27A6A4;
 }
 .text-rbp {
 	color: #27A6A4;

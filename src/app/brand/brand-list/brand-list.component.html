@@ -13,7 +13,7 @@
 
 </div>
 
-<div class="card m-3 brand-lb" *ngFor="let brand of brandList | searchFilter: searchText.value; let i =index;" >
+<div class="card m-3 border-end-0 border-start-0 rounded-0" *ngFor="let brand of brandList | searchFilter: searchText.value; let i =index;" >
 <!--<div class="row">
 <div class="col-md-1">
  <div class="mh-100 bg-primary "></div>
@@ -24,11 +24,19 @@
              <div class="col">
               <h5 class="brand-title">{{ brand?.name }}
                   <span class="me-2">
-                      <i class="uiw-font-zs-icon-info" (click)="tooltip.toggle()" matTooltip={{generateTooltip(brand)}}></i>   
+ 
+                      <i class="uiw-font-zs-icon-info" [ngbPopover]="popContent" [popoverTitle]="popTitle"
+                      triggers="mouseenter:mouseleave" placement="right"></i>   
+                            <ng-template #popContent>
+                                Created by :{{ brand?.CreatedBy }} @ {{  brand?.CreatedDate }}
+                                Last Updated by :{{ brand?.CreatedBy }} @ {{  brand?.CreatedDate }}
+                            </ng-template>
+                            <ng-template #popTitle>Brand Information</ng-template>
+ 
                   </span>
                  
                   <span class="dropdown ">   
-                        <i class="uiw-font-plus" [matMenuTriggerFor]="menu"></i>
+                        <span [matMenuTriggerFor]="menu"><i class="uiw-font-zs-icon-info"></i></span>
                            <mat-menu #menu="matMenu">
                              <button mat-menu-item (click)="editBrandDialog(brand)">Edit Brand</button>
                              <button mat-menu-item (click)="manageBrandDialog()">Manage Brand Accees</button>
@@ -42,8 +50,10 @@
                 <div *ngIf="!brand?.planCycle">So empty! Start by adding a planning cycle</div>
                 <div *ngFor="let pc of brand?.planCycle" class="text-rbp border-bottom brand-pc">{{ pc?.name }}</div>
              </div>
-             <div class="col">
-                   <a href="#" class="text-rbp brand-add-pc-link text-decoration-none ms-auto" (click)="openNewPlanningCycleDialog(brand)"> <i class="uiw-font-plus-circle"></i> Add Planning Cycle</a>
+ 
+             <div class="col text-end">
+                   <a href="#" class="text-rbp brand-add-pc-link text-decoration-none ms-auto" (click)="openNewPlanningCycleDialog(brand)"> <i class="uiw-font-plus-circle me-1"></i> Add Planning Cycle</a>
+ 
              </div>
          </div>
  <!-- </div>-->

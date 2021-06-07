@@ -22,9 +22,11 @@ export class BrandService {
 
   updateBrand(brandObj){
   	return this.restApi.patch("/brand/"+brandObj.id,brandObj);
+ 
   }
 
   deleteBrand(brandObj){
     return  this.restApi.delete("/brand/"+brandObj.id)
+ 
   }
 }

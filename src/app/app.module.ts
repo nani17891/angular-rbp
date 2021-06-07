@@ -22,6 +22,9 @@ import { SearchFilterPipe } from './common/pipe/search-filter.pipe';
 import { EditBrandDialogComponent } from './brand/edit-brand-dialog/edit-brand-dialog.component';
 import { ManageBrandDialogComponent } from './brand/manage-brand-dialog/manage-brand-dialog.component';
 import { DeleteBrandDialogComponent } from './brand/delete-brand-dialog/delete-brand-dialog.component';
+import { CreatePlanningCycleDialogComponent } from './brand/create-planning-cycle-dialog/create-planning-cycle-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PortfolioManagerComponent } from './portfolio-manager/portfolio-manager.component';
 
 
 
@@ -35,7 +38,9 @@ import { DeleteBrandDialogComponent } from './brand/delete-brand-dialog/delete-b
     SearchFilterPipe,
     EditBrandDialogComponent,
     ManageBrandDialogComponent,
-    DeleteBrandDialogComponent
+    DeleteBrandDialogComponent,
+    CreatePlanningCycleDialogComponent,
+    PortfolioManagerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -49,10 +54,12 @@ import { DeleteBrandDialogComponent } from './brand/delete-brand-dialog/delete-b
     MatAutocompleteModule,
     MatMenuModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateBrandDialogComponent,EditBrandDialogComponent,ManageBrandDialogComponent,DeleteBrandDialogComponent]
+  entryComponents: [CreateBrandDialogComponent,EditBrandDialogComponent,ManageBrandDialogComponent,DeleteBrandDialogComponent,
+  CreatePlanningCycleDialogComponent]
 })
 export class AppModule { }

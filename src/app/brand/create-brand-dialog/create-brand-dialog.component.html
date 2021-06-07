@@ -27,7 +27,7 @@
 	
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-stroked-button mat-dialog-close (click)="close()">Cancel</button>
-  <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save & Exit</button>
-   <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>Save & Create Planing Cycle</button>
+  <button mat-stroked-button mat-dialog-close (click)="close()" class="rounded-0">Cancel</button>
+  <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial class="rounded-0" (click)="save()">Save & Exit</button>
+   <button mat-stroked-button [mat-dialog-close]="true" class="btn-rbp rounded-0">Save & Create Planing Cycle</button>
 </mat-dialog-actions>

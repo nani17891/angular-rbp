@@ -51,7 +51,7 @@ export class RestApiService {
     )
   }
 
-  delete(endPoint,data) {
+  delete(endPoint) {
     return this.httpClient.delete(this.baseUrl + endPoint)
     .pipe(
       retry(1),

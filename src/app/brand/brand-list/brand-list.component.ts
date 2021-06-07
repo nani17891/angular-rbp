@@ -150,10 +150,7 @@ export class BrandListComponent implements OnInit {
  
 		dialogConfig.height = "400px";
  
-		dialogConfig.data = {
-			id: 1,
-			title: 'Angular For Beginners'
-		};
+		dialogConfig.data = _brandObj
 	
 		const dialogRef =  this.dialog.open(DeleteBrandDialogComponent, dialogConfig);
 	   
@@ -162,13 +159,10 @@ export class BrandListComponent implements OnInit {
 		  console.log(`Dialog result: ${result}`);
  
       this.brandService.deleteBrand(_brandObj).subscribe((_response) => {
-        var index = this.brandList.findIndex(item => item.id === result.id)
-        this.brandList.slice(index, 1, result)
-      })
- 
-		  
-		});
-	}
+        this.brandService.getBrands().subscribe(response=>this.brandList=response)
+	   });
+	 });
+  }
 
 openNewPlanningCycleDialog(brand) {
   const dialogConfig = new MatDialogConfig();

@@ -57,7 +57,11 @@ import { PortfolioManagerComponent } from './portfolio-manager/portfolio-manager
     MatCardModule,
     NgbModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
   entryComponents: [CreateBrandDialogComponent,EditBrandDialogComponent,ManageBrandDialogComponent,DeleteBrandDialogComponent,
   CreatePlanningCycleDialogComponent]

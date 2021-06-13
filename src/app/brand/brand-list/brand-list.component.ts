@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { CreatePlanningCycleDialogComponent } from '../create-planning-cycle-dialog/create-planning-cycle-dialog.component';
 import { BrandService } from '../brand.service';
 import {Observable} from 'rxjs'
+import { AuthenticationService } from '../../common/authentication.service';
 
 @Component({
   selector: 'app-brand-list',
@@ -17,47 +18,21 @@ import {Observable} from 'rxjs'
 export class BrandListComponent implements OnInit {
   public brandList: any = [];
   searchText = new FormControl();
-  constructor(public dialog: MatDialog,public brandService:BrandService) { }
+  showAdminUI = false;
+
+  constructor(public dialog: MatDialog,public brandService:BrandService,
+              public authService: AuthenticationService) { 
+
+              this.showAdminUI = this.authService.isAdmin();
+  }
 
   ngOnInit(): void {
-	  this.brandService.getBrands().subscribe(response=>this.brandList=response)
-/*
-  	this.brandList = [
-		  
- 	{
-  
-      id: 1,
-  		name: "Brand Cam",
-  		description: "Description about your brand",
-  		CreatedDate: "Wed, 26 May 2021 06:41:27 GMT",
-  		CreatedBy: "jack",
-  		planCycle:[
-  			{
-  				name:'Plan Cycle 2020'
-  			},
-  			{
-  				name:'Plan Cycle 2021'
-  			},
-  			{
-  				name:'Plan Cycle 2022'
-  			}
-  		]
-  	},
-  	{
-      id : 2,
-  		name: "Pine Brand",
-  		description: "Description about your brand",
-  		CreatedDate: "Wed, 26 May 2021 06:41:27 GMT",
-  		CreatedBy: "jack",
-  		planCycle:[
-  			{
-  				name:'Plan Cycle'
-  			} 
-  		]
-  	},
+	  this.loadBrandList();
+    
+  }
 
+  restoreBrand() {
 
-    ];*/
   }
 
   generateTooltip(currentBrandObj) {
@@ -67,13 +42,15 @@ export class BrandListComponent implements OnInit {
     return 'Created by : '+ currentBrandObj.CreatedBy+ ' @ '+currentBrandObj.CreatedDate;
   }
 
+  loadBrandList() {
+    this.brandService.getBrands().subscribe(response=>this.brandList=response);
+  }
+
   openNewBrandDialog(){
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "500px";
-    dialogConfig.height = "600px";
      
 
     const dialogRef =  this.dialog.open(CreateBrandDialogComponent, dialogConfig);
@@ -83,23 +60,20 @@ export class BrandListComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       if(result) {
         this.brandService.createBrand(result).subscribe((_response) => {
-          this.brandList.push(result);
+          //this.brandList.push(result);
+          this.loadBrandList();
         })    
       }
       
     });
   }
-  editBrandDialog(brandObject){
 
-    
+  editBrandDialog(brandObject){
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "500px";
-
-    dialogConfig.height = "400px";
- 
     
     this.brandService.getBrand(brandObject.id).subscribe((response) => {
           dialogConfig.data = response[0];
@@ -123,8 +97,8 @@ export class BrandListComponent implements OnInit {
 	
 		dialogConfig.disableClose = false;
 		dialogConfig.autoFocus = true;
-		dialogConfig.width = "500px";
-		dialogConfig.height = "300px";
+    dialogConfig.width = "500px";
+
 		dialogConfig.data = {
 			id: 1,
 			title: 'Angular For Beginners'
@@ -147,19 +121,16 @@ export class BrandListComponent implements OnInit {
 		dialogConfig.disableClose = false;
 		dialogConfig.autoFocus = true;
 		dialogConfig.width = "500px";
- 
-		dialogConfig.height = "400px";
- 
-		dialogConfig.data = _brandObj
+ 		dialogConfig.data = _brandObj
 	
 		const dialogRef =  this.dialog.open(DeleteBrandDialogComponent, dialogConfig);
-	   
+  
 	
 		dialogRef.afterClosed().subscribe(result => {
 		  console.log(`Dialog result: ${result}`);
  
       this.brandService.deleteBrand(_brandObj).subscribe((_response) => {
-        this.brandService.getBrands().subscribe(response=>this.brandList=response)
+        this.loadBrandList()
 	   });
 	 });
   }

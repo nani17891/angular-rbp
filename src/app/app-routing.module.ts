@@ -5,17 +5,20 @@ import { BrandComponent } from './brand/brand.component';
 import { BrandListComponent } from './brand/brand-list/brand-list.component';
 import { PortfolioManagerComponent } from './portfolio-manager/portfolio-manager.component';
 
-const routes: Routes = [{
+const routes: Routes = [
+  {
     path: '',
     component: BrandComponent
-  },{
-    path: 'brand/list',
+  },
+  {
+    path: 'brand-manager',
     component: BrandListComponent
   },
   {
-    path: 'portfolio/manager',
+    path: 'portfolio-manager',
     component: PortfolioManagerComponent
-  }];
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

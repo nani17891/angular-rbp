@@ -1,13 +1,42 @@
-
+<button type="button" class="btn-close pull-right" (click)="close()" aria-label="Close"></button>
 <h2 mat-dialog-title>Manage Brand Access</h2>
-
 <mat-dialog-content>
 		<div class="mb-3">
-		  <input type="text" class="form-control" id="name" formControlName="name" placeholder=" search by username or email" required>
+		  <input type="text" class="form-control user-auto" id="name" 
+		   [formControl]="control" [matAutocomplete]="auto"
+		    placeholder=" search by username or email"
+		    [matChipInputFor]="chipList"
+		    (matChipInputTokenEnd)="add($event)">
+		   <mat-autocomplete #auto="matAutocomplete">
+			    <mat-option *ngFor="let street of filteredStreets | async" [value]="street.name">
+			      {{street.name}}-{{ street.email}}
+			    </mat-option>
+			  </mat-autocomplete>
 		</div>
+		 
+
+		<mat-chip-list #chipList aria-label="user selection">
+			<ng-container *ngFor="let user of selectedUsers">
+			    <mat-chip [selectable]="selectable"
+			             [removable]="removable" (removed)="remove(user)">
+			      {{user?.name}}-{{user?.email}}
+			      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+			    </mat-chip>
+			     <mat-select [(value)]="user.type" style="width:120px;" class="text-rbp">
+				    <mat-option class="text-rbp" *ngFor="let ua of userAccess" [value]="ua.value">
+				      {{ua.viewValue}}
+				    </mat-option>
+				</mat-select>
+			</ng-container>
+		    <!--<input placeholder="New fruit..."
+		           [matChipInputFor]="chipList"
+		           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+		           [matChipInputAddOnBlur]="addOnBlur"
+		           (matChipInputTokenEnd)="add($event)">-->
+		</mat-chip-list>
 		
 </mat-dialog-content>
 <mat-dialog-actions align="end" >
-  <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>cancel</button>
-<button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+  <button mat-stroked-button [mat-dialog-close]="true" class="rounded-0" cdkFocusInitial>cancel</button>
+<button mat-stroked-button [mat-dialog-close]="true"  class="rounded-0"cdkFocusInitial>Save</button>
 </mat-dialog-actions>

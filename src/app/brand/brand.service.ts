@@ -5,6 +5,7 @@ import { RestApiService } from '../common/rest-api.service';
   providedIn: 'root'
 })
 export class BrandService {
+   
 
   constructor(public restApi : RestApiService) { }
 

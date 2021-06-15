@@ -28,6 +28,13 @@ export class BrandService {
 
   deleteBrand(brandObj){
     return  this.restApi.delete("/brand/"+brandObj.id)
- 
+  }
+
+  gerUsers(querySearch){
+    return  this.restApi.get("/user?q="+querySearch)
+  }
+
+  manageUsers(userObj){
+    return this.restApi.patch("/user-manager",userObj);
   }
 }

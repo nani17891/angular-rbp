@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from './common/rest-api.service';
+import { AuthenticationService } from './common/authentication.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,11 +10,12 @@ import { RestApiService } from './common/rest-api.service';
 export class AppComponent {
   userlinks:any[];
   applicationlinks:any[];
-  constructor(public restApi : RestApiService){
+  constructor(public restApi : RestApiService, public authService: AuthenticationService){
     this.restApi.post("/user_session/",{ Return_URL: location.href }).subscribe(response=>{
       let htmlContent = response["htmlContent"];
       this.userlinks = this.getLinks(htmlContent, "zs-link");
       this.applicationlinks = this.getLinks(htmlContent, "lbar-link");
+      this.authService.setUserRole(response["roles"])
     })
   }
   title(title: any) {

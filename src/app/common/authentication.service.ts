@@ -15,8 +15,8 @@ export class AuthenticationService {
 
   }
 
-  setUserRole(value){
-  	this.USER_ROLE = value;
+  setUserRole(roles){
+    this.USER_ROLE = roles;
   }
 
   getUserRole() {
@@ -24,10 +24,10 @@ export class AuthenticationService {
   }
 
   isAdmin(){
-  	return this.USER_ROLE == "ADMIN";
+  	return this.USER_ROLE.includes('RTBP.Admin.Admin');
   }
 
   isConfigurator(){
-  	return this.USER_ROLE == "configurator";
+    return this.USER_ROLE.includes('RTBP.Configurator.Configurator');
   }
 }

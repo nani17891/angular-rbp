@@ -72,6 +72,6 @@ import { PortfolioManagerComponent } from './portfolio-manager/portfolio-manager
   },AuthenticationService],
   bootstrap: [AppComponent],
   entryComponents: [CreateBrandDialogComponent,EditBrandDialogComponent,ManageBrandDialogComponent,DeleteBrandDialogComponent,
-  CreatePlanningCycleDialogComponent]
+  CreatePlanningCycleDialogComponent,ManageBrandDialogComponent]
 })
 export class AppModule { }

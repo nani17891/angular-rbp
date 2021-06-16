@@ -62,13 +62,13 @@ export class BrandListComponent implements OnInit {
         this.brandService.createBrand(result).subscribe((_response) => {
           //this.brandList.push(result);
           this.loadBrandList();
-        })    
+        });
       }
       
     });
-  }
+  };
 
-  editBrandDialog(brandObject){
+  editBrandDialog(brandObject:any){
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
@@ -82,35 +82,35 @@ export class BrandListComponent implements OnInit {
  
           dialogRef.afterClosed().subscribe(result => {
               console.log(`Dialog result: ${result}`);
- 
-               this.brandService.updateBrand(result).subscribe((_response) => {
- 
+              if(result) {
+                 this.brandService.updateBrand(result).subscribe((_response) => {
                   var index = this.brandList.findIndex(item => item.id === result.id)
-                  this.brandList.splice(index, 1, result)
-                })   
-            });
+                    this.brandList.splice(index, 1, result)
+                  })   
+                }
+                
+              });
           });
- }
+ };
 
-	manageBrandDialog(){
+	manageBrandDialog(brandObj:any){
 		const dialogConfig = new MatDialogConfig();
 	
 		dialogConfig.disableClose = false;
 		dialogConfig.autoFocus = true;
     dialogConfig.width = "500px";
-
-		dialogConfig.data = {
-			id: 1,
-			title: 'Angular For Beginners'
-		};
+   	dialogConfig.data = brandObj;
 	
 		const dialogRef =  this.dialog.open(ManageBrandDialogComponent, dialogConfig);
 	   
 	
 		dialogRef.afterClosed().subscribe(result => {
-		  console.log(`Dialog result: ${result}`);
-		
-		});
+      if(result) {
+  		  this.brandService.manageUsers(result).subscribe((_response) => {
+          
+        });
+      }
+	 });
 	}
   
  

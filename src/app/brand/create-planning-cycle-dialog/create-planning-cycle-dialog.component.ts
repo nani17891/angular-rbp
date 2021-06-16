@@ -8,7 +8,7 @@ import {startWith, map} from 'rxjs/operators';
 @Component({
   selector: 'app-planning-cycle-brand-dialog',
   templateUrl: './create-planning-cycle-dialog.component.html',
-  styleUrls: ['./create-planning-cycle-dialog.component.css']
+  styleUrls: ['./create-planning-cycle-dialog.component.less']
 })
 export class CreatePlanningCycleDialogComponent implements OnInit {
 	

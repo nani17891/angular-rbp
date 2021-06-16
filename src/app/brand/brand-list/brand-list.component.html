@@ -42,7 +42,7 @@
                         <span [matMenuTriggerFor]="menu"><i class="uiw-font-zs-icon-info"></i></span>
                            <mat-menu #menu="matMenu">
                              <button mat-menu-item (click)="editBrandDialog(brand)">Edit Brand</button>
-                             <button mat-menu-item (click)="manageBrandDialog()">Manage Brand Accees</button>
+                             <button mat-menu-item (click)="manageBrandDialog(brand)">Manage Brand Accees</button>
                              <button mat-menu-item (click)="deleteBrandDialog(brand)">Delete Brand</button>
                            </mat-menu>
                   </span>

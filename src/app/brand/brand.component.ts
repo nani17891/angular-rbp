@@ -5,7 +5,7 @@ import { CreateBrandDialogComponent } from './create-brand-dialog/create-brand-d
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
-  styleUrls: ['./brand.component.css']
+  styleUrls: ['./brand.component.less']
 })
 export class BrandComponent implements OnInit {
 

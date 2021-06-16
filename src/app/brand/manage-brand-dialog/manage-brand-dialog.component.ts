@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { MAT_DIALOG_DATA,MatDialogRef } from "@angular/material/dialog";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
+import { BrandService } from '../brand.service';
+
 
 @Component({
   selector: 'app-manage-brand-dialog',
@@ -19,6 +22,14 @@ export class ManageBrandDialogComponent implements OnInit {
   streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
   filteredStreets: Observable<any>;
   selectedUsers = [];
+  managerReq = [];
+  brandData;
+
+  userAccess = [
+    {value: 'fullaccess', viewValue: 'Full Access'},
+    {value: 'read', viewValue: 'Read'}
+  ];
+
 
   users: any = [
     {
@@ -44,7 +55,12 @@ export class ManageBrandDialogComponent implements OnInit {
     } 
   ];
  
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<ManageBrandDialogComponent>,
+         @Inject(MAT_DIALOG_DATA) brandResp,public brandService:BrandService) { 
+
+          this.brandData  = brandResp;
+
+  }
 
   ngOnInit(): void {
    this.filteredStreets = this.control.valueChanges.pipe(
@@ -55,8 +71,12 @@ export class ManageBrandDialogComponent implements OnInit {
 
   private _filter(value: any): any {
     let filterValue = this._normalizeValue({name: value});
-    console.log(this.users.filter(street => this._normalizeValue(street).indexOf(filterValue) !== -1));
-    return this.users.filter(street => this._normalizeValue(street).indexOf(filterValue) !== -1);
+    //console.log(this.users.filter(street => this._normalizeValue(street).indexOf(filterValue) !== -1));
+
+    this.brandService.gerUsers(filterValue).subscribe((_response) => {
+      this.users = _response;
+      return this.users.filter(street => this._normalizeValue(street).indexOf(filterValue) !== -1);
+    });    
   }
 
   private _normalizeValue(value: any): any {
@@ -64,13 +84,6 @@ export class ManageBrandDialogComponent implements OnInit {
     return value.name.toLowerCase().replace(/\s/g, '');
   }
 
-  userAccess = [
-    {value: 'fullaccess', viewValue: 'Full Access'},
-    {value: 'read', viewValue: 'Read'}
-  ];
-
-
-  
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -84,16 +97,37 @@ export class ManageBrandDialogComponent implements OnInit {
     this.control.reset()
   }
 
-  remove(user: any): void {
+  remove(user: any,i: any): void {
     const index = this.selectedUsers.indexOf(user);
 
     if (index >= 0) {
-      this.selectedUsers.splice(index, 1);
+
+      this.managerReq.push({
+        "brand_id":this.brandData.id,
+        "user_id":user.id,
+        "access_level":user.type,
+        "action":"delete"
+      })
+      this.selectedUsers.splice(i, 1);
     }
   }
 
+  save(){
+    
+   this.selectedUsers.forEach(function(item){
+      this.managerReq.push({
+        "brand_id":this.brandData.id,
+        "user_id":item.id,
+        "access_level":item.type,
+        "action":"add"
+      })
+   });
+
+   this.dialogRef.close(this.managerReq);
+  }
+
   close() {
-    //this.dialogRef.close();
+    this.dialogRef.close();
   }
 
 }

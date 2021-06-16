@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject} from '@angular/core';
+import { MAT_DIALOG_DATA,MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-delete-brand-dialog',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteBrandDialogComponent implements OnInit {
 
-  constructor() { }
+  brandObj : any;
+
+  constructor(public dialogRef: MatDialogRef<DeleteBrandDialogComponent>,
+  			 @Inject(MAT_DIALOG_DATA) brandResp) { 
+
+  			 	this.brandObj = brandResp;
+  			 }
 
   ngOnInit(): void {
   }
 
+  deleteBrand(){
+  	this.dialogRef.close(this.brandObj);
+  }
+  
 }

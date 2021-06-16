@@ -13,12 +13,25 @@ import { map, filter, catchError } from 'rxjs/operators';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
+  localData = true;
+
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     request = request.clone({
       withCredentials: true
     });
+
+    if(this.localData){
+      var url = request.url.substr(request.url.lastIndexOf('/'),request.url.length);
+        console.log(url);
+        request = request.clone({
+          url: "./assets/data/"+url+"_"+request.method.toLowerCase()+".json"
+        });
+     
+    }
+
+    
     return next.handle(request).pipe(
       catchError((response: HttpErrorResponse) => {
         if (response.status === 401) {

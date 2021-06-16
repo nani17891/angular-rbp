@@ -15,6 +15,6 @@
 		
 </mat-dialog-content>
 <mat-dialog-actions align="end" >
-  <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>cancel</button>
-<button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+  <button mat-stroked-button [mat-dialog-close]="true" class="rounded-0" cdkFocusInitial>cancel</button>
+<button mat-stroked-button [mat-dialog-close]="true"  class="rounded-0"cdkFocusInitial (click)="deleteBrand()">Save</button>
 </mat-dialog-actions>

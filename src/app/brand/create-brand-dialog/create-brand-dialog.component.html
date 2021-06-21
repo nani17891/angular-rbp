@@ -12,16 +12,39 @@
 		  <label for="description" class="form-label">Brand Description</label>
 		  <textarea class="form-control" id="description" rows="3"formControlName="description" required></textarea>
 		</div>
-
+<hr>
 		<div class="mb-3">
-		  <label for="peopleList" class="form-label">Invite people to collaborate</label>
-		  <input type="text" class="form-control" id="peopleList" [formControl]="control" [matAutocomplete]="auto">
-			  <mat-autocomplete #auto="matAutocomplete">
-			    <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
-			      {{street}}
+		  <label for="peopleList" class="form-label">Invite people to collaborate(optional)</label>
+		  <input type="text" placeholder="search by username or email" style="width:300px;" class="form-control" id="peopleList" [formControl]="control" [matAutocomplete]="auto"
+		   [matChipInputFor]="chipList"
+		    (matChipInputTokenEnd)="add($event)">
+	
+		   <mat-autocomplete #auto="matAutocomplete">
+			    <mat-option *ngFor="let user of filteredUsers" [value]="user.username">
+			      {{user?.username}}-{{ user?.email}}
 			    </mat-option>
 			  </mat-autocomplete>
+			  
 		</div>
+		<mat-chip-list #chipList aria-label="user selection">
+			<ng-container *ngFor="let user of selectedUsers;let i= index;">
+			    <mat-chip [selectable]="selectable"
+			             [removable]="removable" (removed)="remove(user,i)">
+			      {{user?.username}}-{{user?.email}}
+			      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+			    </mat-chip>
+			     <mat-select [(value)]="user.access_level" style="width:120px;" class="text-rbp">
+				    <mat-option class="text-rbp" *ngFor="let ua of userAccess" [value]="ua.value">
+				      {{ua.viewValue}}
+				    </mat-option>
+				</mat-select>
+			</ng-container>
+		    <!--<input placeholder="New fruit..."
+		           [matChipInputFor]="chipList"
+		           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+		           [matChipInputAddOnBlur]="addOnBlur"
+		           (matChipInputTokenEnd)="add($event)">-->
+		</mat-chip-list>
 
 	</form>
 	
@@ -29,5 +52,5 @@
 <mat-dialog-actions align="end">
   <button mat-stroked-button mat-dialog-close (click)="close()" class="rounded-0">Cancel</button>
   <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial class="rounded-0" (click)="save()">Save & Exit</button>
-   <button mat-stroked-button [mat-dialog-close]="true" class="btn-rbp rounded-0">Save & Create Planing Cycle</button>
+   <button mat-stroked-button [mat-dialog-close]="true" class="btn-rbp rounded-0" (click)="save()">Save & Create Planing Cycle</button>
 </mat-dialog-actions>

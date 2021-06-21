@@ -4,21 +4,26 @@ import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
+import { BrandService } from '../brand.service';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-create-brand-dialog',
   templateUrl: './create-brand-dialog.component.html',
-  styleUrls: ['./create-brand-dialog.component.css']
+  styleUrls: ['./create-brand-dialog.component.less']
 })
 export class CreateBrandDialogComponent implements OnInit {
 	
   description: string;
   brandForm: FormGroup;
   control = new FormControl();
-  streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
-  filteredStreets: Observable<string[]>;
-
-  constructor(public dialogRef: MatDialogRef<CreateBrandDialogComponent>,
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  filteredUsers: any;
+  selectedUsers = [];
+  constructor(public dialogRef: MatDialogRef<CreateBrandDialogComponent>,public brandService:BrandService,
   			 @Inject(MAT_DIALOG_DATA) data,
   			 private formBuilder: FormBuilder) {
  
@@ -27,20 +32,50 @@ export class CreateBrandDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  	this.filteredStreets = this.control.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+  	let self = this;
+    this.control.valueChanges
+    .subscribe(value => {
+      if(value.length >= 1){
+          self.filteredUsers = [];
+          this.brandService.gerUsers(value).subscribe(response => {
+            self.filteredUsers = response;
+          });
+        }
+        else {
+          return null;
+        }
+    })
+  
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = this._normalizeValue(value);
-    return this.streets.filter(street => this._normalizeValue(street).includes(filterValue));
+  userAccess = [
+    {value: 'Fullaccess', viewValue: 'Full Access'},
+    {value: 'Read', viewValue: 'Read'}
+  ];
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our user
+    if (value && this.filteredUsers.find(a => a.username == value)) {
+      this.selectedUsers.push(this.filteredUsers.find(a => a.username == value));
+    }
+
+    // Clear the input value
+    this.control.reset()
   }
 
-  private _normalizeValue(value: string): string {
-    return value.toLowerCase().replace(/\s/g, '');
+  remove(user: any,i: any): void {
+    const index = this.selectedUsers.indexOf(user);
+
+    if (index >= 0) {
+
+     this.selectedUsers[index].action = "delete";
+      this.selectedUsers.splice(i, 1);
+    }
   }
+
+ 
 
   initForm(){
   	this.brandForm = this.formBuilder.group({
